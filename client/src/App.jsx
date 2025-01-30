@@ -1,15 +1,24 @@
 import { useState } from "react";
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [toggledrawersidebar, setToggledrawersidebar] = useState({ display: "none" });
+
+  const toggledrawer = () => {
+    setToggledrawersidebar((prev) => ({
+      display: prev.display === "none" ? "flex" : "none",
+    }));
+  };
+
+  const [editcreatechannelbtn, setEditcreatechannelbtn] = useState(false);
+  const [videouploadpage, setVideouploadpage] = useState(false);
 
   return (
     <>
-      <div>
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-          <h1 className="text-4xl font-bold text-blue-500">Hello, Tailwind!</h1>
-        </div>
-      </div>
+     <Router>
+     <Navbar setEditcreatechannelbtn={setEditcreatechannelbtn} toggledrawer={toggledrawer} />
+     </Router>
     </>
   );
 }
